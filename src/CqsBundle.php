@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 use Yceruto\CqsBundle\Attribute\AsCommandHandler;
 use Yceruto\CqsBundle\Attribute\AsQueryHandler;
 
-class CqrBundle extends AbstractBundle
+class CqsBundle extends AbstractBundle
 {
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
