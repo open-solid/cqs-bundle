@@ -15,6 +15,8 @@ class CqsBundle extends AbstractBundle
     {
         $builder->registerAttributeForAutoconfiguration(AsCommandHandler::class, $this->configureAsMessageHandler(...));
         $builder->registerAttributeForAutoconfiguration(AsQueryHandler::class, $this->configureAsMessageHandler(...));
+
+        $container->import('../config/services.php');
     }
 
     public function getPath(): string
