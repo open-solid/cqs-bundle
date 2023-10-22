@@ -20,7 +20,7 @@ return static function (ContainerConfigurator $container) {
 
         ->set('cqs.command.middlewares', MiddlewareChain::class)
             ->args([
-                service('cqs.command.handler_middleware'),
+                [service('cqs.command.handler_middleware')],
             ])
 
         ->set('cqs.command_bus', NativeMessageBus::class)
@@ -42,7 +42,7 @@ return static function (ContainerConfigurator $container) {
 
         ->set('cqs.query.middlewares', MiddlewareChain::class)
             ->args([
-                service('cqs.query.handler_middleware'),
+                [service('cqs.query.handler_middleware')],
             ])
 
         ->set('cqs.query_bus', NativeMessageBus::class)
