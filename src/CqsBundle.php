@@ -8,6 +8,8 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 use Yceruto\CqsBundle\Attribute\AsCommandHandler;
 use Yceruto\CqsBundle\Attribute\AsQueryHandler;
+use Yceruto\CqsBundle\Controller\CommandAction;
+use Yceruto\CqsBundle\Controller\QueryAction;
 
 class CqsBundle extends AbstractBundle
 {
@@ -15,6 +17,11 @@ class CqsBundle extends AbstractBundle
     {
         $builder->registerAttributeForAutoconfiguration(AsCommandHandler::class, $this->configureAsMessageHandler(...));
         $builder->registerAttributeForAutoconfiguration(AsQueryHandler::class, $this->configureAsMessageHandler(...));
+
+        $builder->registerForAutoconfiguration(CommandAction::class)
+            ->addTag('controller.service_arguments');
+        $builder->registerForAutoconfiguration(QueryAction::class)
+            ->addTag('controller.service_arguments');
 
         $container->import('../config/services.php');
     }
