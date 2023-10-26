@@ -9,3 +9,7 @@ composer require yceruto/cqs-bundle
 ## License
 
 This software is published under the [MIT License](LICENSE)
+
+## TODO
+
+ - [ ] Add support for Symfony Messenger component
