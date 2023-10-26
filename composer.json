@@ -9,17 +9,11 @@
             "email": "yonelceruto@gmail.com"
         }
     ],
-    "repositories": {
-        "yceruto/cqs": {
-            "type": "path",
-            "url": "/Users/yonelceruto/github/yceruto/cqs/"
-        }
-    },
     "require": {
         "php": ">=8.2",
         "symfony/http-kernel": "^7.0",
         "symfony/dependency-injection": "^7.0",
-        "yceruto/cqs": "*"
+        "yceruto/cqs": "dev-main"
     },
     "autoload": {
         "psr-4": {
