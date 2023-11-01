@@ -9,6 +9,7 @@ use Cqs\Query\NativeQueryBus;
 use Cqs\Query\QueryBus;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_locator;
 
 return static function (ContainerConfigurator $container) {
@@ -39,10 +40,11 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 tagged_locator('cqs.query_handler', 'query'),
             ])
+            ->tag('cqs.middleware')
 
         ->set('cqs.query.middlewares', MiddlewareChain::class)
             ->args([
-                [service('cqs.query.handler_middleware')],
+                tagged_iterator('cqs.middleware'),
             ])
 
         ->set('cqs.query_bus', NativeMessageBus::class)
