@@ -18,10 +18,11 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 tagged_locator('cqs.command_handler', 'command'),
             ])
+            ->tag('cqs.command.middleware')
 
         ->set('cqs.command.middlewares', MiddlewareChain::class)
             ->args([
-                [service('cqs.command.handler_middleware')],
+                tagged_iterator('cqs.command.middleware'),
             ])
 
         ->set('cqs.command_bus', NativeMessageBus::class)
@@ -40,11 +41,11 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 tagged_locator('cqs.query_handler', 'query'),
             ])
-            ->tag('cqs.middleware')
+            ->tag('cqs.query.middleware')
 
         ->set('cqs.query.middlewares', MiddlewareChain::class)
             ->args([
-                tagged_iterator('cqs.middleware'),
+                tagged_iterator('cqs.query.middleware'),
             ])
 
         ->set('cqs.query_bus', NativeMessageBus::class)
