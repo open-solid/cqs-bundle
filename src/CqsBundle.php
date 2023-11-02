@@ -2,26 +2,34 @@
 
 namespace Yceruto\CqsBundle;
 
-use Symfony\Component\DependencyInjection\ChildDefinition;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-use Yceruto\CqsBundle\Attribute\AsCommandHandler;
-use Yceruto\CqsBundle\Attribute\AsQueryHandler;
 use Yceruto\CqsBundle\Controller\CommandAction;
 use Yceruto\CqsBundle\Controller\QueryAction;
+use Yceruto\CqsBundle\DependencyInjection\Configurator\MessageHandlerConfigurator;
 
 class CqsBundle extends AbstractBundle
 {
+    public function configure(DefinitionConfigurator $definition): void
+    {
+        $definition->import('../config/definition.php');
+    }
+
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        $builder->registerAttributeForAutoconfiguration(AsCommandHandler::class, $this->configureAsMessageHandler(...));
-        $builder->registerAttributeForAutoconfiguration(AsQueryHandler::class, $this->configureAsMessageHandler(...));
+        MessageHandlerConfigurator::configure($builder);
 
         $builder->registerForAutoconfiguration(CommandAction::class)
             ->addTag('controller.service_arguments');
         $builder->registerForAutoconfiguration(QueryAction::class)
             ->addTag('controller.service_arguments');
+
+        if ($config['middleware']['doctrine'] && interface_exists(EntityManagerInterface::class)) {
+            $container->import('../config/bridge/doctrine.php');
+        }
 
         $container->import('../config/services.php');
     }
@@ -29,30 +37,5 @@ class CqsBundle extends AbstractBundle
     public function getPath(): string
     {
         return \dirname(__DIR__);
-    }
-
-    protected function configureAsMessageHandler(ChildDefinition $definition, AsCommandHandler|AsQueryHandler $attribute, \ReflectionClass $reflectionClass): void
-    {
-        if (!$reflectionClass->hasMethod('__invoke')) {
-            return;
-        }
-
-        $reflectionMethod = $reflectionClass->getMethod('__invoke');
-
-        if (0 === $reflectionMethod->getNumberOfParameters()) {
-            return;
-        }
-
-        $type = $reflectionMethod->getParameters()[0]->getType();
-
-        if (null === $type || $type->isBuiltin()) {
-            return;
-        }
-
-        if ($attribute instanceof AsQueryHandler) {
-            $definition->addTag('cqs.query_handler', ['query' => $type->getName()]);
-        } else {
-            $definition->addTag('cqs.command_handler', ['command' => $type->getName()]);
-        }
     }
 }
