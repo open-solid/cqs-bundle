@@ -8,6 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 use Yceruto\CqsBundle\Controller\CommandAction;
+use Yceruto\CqsBundle\Controller\CqsAction;
 use Yceruto\CqsBundle\Controller\QueryAction;
 use Yceruto\CqsBundle\DependencyInjection\Configurator\MessageHandlerConfigurator;
 
@@ -25,6 +26,8 @@ class CqsBundle extends AbstractBundle
         $builder->registerForAutoconfiguration(CommandAction::class)
             ->addTag('controller.service_arguments');
         $builder->registerForAutoconfiguration(QueryAction::class)
+            ->addTag('controller.service_arguments');
+        $builder->registerForAutoconfiguration(CqsAction::class)
             ->addTag('controller.service_arguments');
 
         if ($config['middleware']['doctrine'] && interface_exists(EntityManagerInterface::class)) {
