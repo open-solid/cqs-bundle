@@ -2,6 +2,7 @@
 
 namespace Yceruto\CqsBundle\DependencyInjection\Configurator;
 
+use ReflectionNamedType;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Yceruto\CqsBundle\Attribute\AsCommandHandler;
@@ -30,7 +31,7 @@ class MessageHandlerConfigurator
 
         $type = $reflectionMethod->getParameters()[0]->getType();
 
-        if (null === $type || $type->isBuiltin()) {
+        if (!$type instanceof ReflectionNamedType || $type->isBuiltin()) {
             return;
         }
 
