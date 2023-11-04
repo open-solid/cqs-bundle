@@ -2,7 +2,6 @@
 
 namespace Yceruto\CqsBundle;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -30,8 +29,8 @@ class CqsBundle extends AbstractBundle
         $builder->registerForAutoconfiguration(CqsAction::class)
             ->addTag('controller.service_arguments');
 
-        if ($config['middleware']['doctrine'] && interface_exists(EntityManagerInterface::class)) {
-            $container->import('../config/bridge/doctrine.php');
+        if ($config['middleware']['doctrine']) {
+            $container->import('../config/packages/doctrine.php');
         }
 
         $container->import('../config/services.php');

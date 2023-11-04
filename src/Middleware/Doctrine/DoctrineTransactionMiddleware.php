@@ -1,6 +1,6 @@
 <?php
 
-namespace Yceruto\CqsBundle\Bridge\Doctrine\Middleware;
+namespace Yceruto\CqsBundle\Middleware\Doctrine;
 
 use Cqs\Messenger\Envelop;
 use Cqs\Messenger\Middleware\Middleware;
