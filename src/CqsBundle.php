@@ -11,8 +11,8 @@ use Yceruto\CqsBundle\Attribute\AsQueryHandler;
 use Yceruto\CqsBundle\Controller\CommandAction;
 use Yceruto\CqsBundle\Controller\CqsAction;
 use Yceruto\CqsBundle\Controller\QueryAction;
-use Yceruto\CqsBundle\DependencyInjection\CompilerPass\MessageHandlersLocatorPass;
-use Yceruto\CqsBundle\DependencyInjection\Configurator\MessageHandlerConfigurator;
+use Yceruto\Messenger\Bridge\Symfony\DependencyInjection\CompilerPass\MessageHandlersLocatorPass;
+use Yceruto\Messenger\Bridge\Symfony\DependencyInjection\Configurator\MessageHandlerConfigurator;
 
 class CqsBundle extends AbstractBundle
 {
@@ -23,7 +23,8 @@ class CqsBundle extends AbstractBundle
 
     public function build(ContainerBuilder $container): void
     {
-        $container->addCompilerPass(new MessageHandlersLocatorPass());
+        $container->addCompilerPass(new MessageHandlersLocatorPass('cqs.command.handler', 'cqs.command.handle_middleware'));
+        $container->addCompilerPass(new MessageHandlersLocatorPass('cqs.query.handler', 'cqs.query.handle_middleware'));
     }
 
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void

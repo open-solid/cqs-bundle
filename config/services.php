@@ -30,6 +30,7 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 service('cqs.message_bus.command'),
             ])
+
         ->alias(CommandBus::class, NativeCommandBus::class)
 
         ->set('cqs.query.handle_middleware', HandleMessageMiddleware::class)
@@ -48,6 +49,7 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 service('cqs.message_bus.query'),
             ])
+
         ->alias(QueryBus::class, NativeQueryBus::class)
     ;
 };
