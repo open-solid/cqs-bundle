@@ -2,62 +2,52 @@
 
 use Cqs\Command\CommandBus;
 use Cqs\Command\NativeCommandBus;
-use Cqs\Messenger\Middleware\HandlerMiddleware;
-use Cqs\Messenger\Middleware\MiddlewareChain;
-use Cqs\Messenger\NativeMessageBus;
 use Cqs\Query\NativeQueryBus;
 use Cqs\Query\QueryBus;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Yceruto\Messenger\Bus\NativeMessageBus;
+use Yceruto\Messenger\Handler\HandlersCountPolicy;
+use Yceruto\Messenger\Middleware\HandleMessageMiddleware;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\abstract_arg;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_locator;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('cqs.command.handler_middleware', HandlerMiddleware::class)
+        ->set('cqs.command.handle_command_middleware', HandleMessageMiddleware::class)
             ->args([
-                tagged_locator('cqs.command_handler', 'command'),
+                abstract_arg('cqs.command.handlers_locator'),
+                HandlersCountPolicy::SINGLE_HANDLER,
             ])
             ->tag('cqs.command.middleware')
 
-        ->set('cqs.command.middlewares', MiddlewareChain::class)
+        ->set('cqs.message_bus.command', NativeMessageBus::class)
             ->args([
                 tagged_iterator('cqs.command.middleware'),
             ])
 
-        ->set('cqs.command_bus', NativeMessageBus::class)
-            ->args([
-                service('cqs.command.middlewares'),
-            ])
-
         ->set(NativeCommandBus::class)
             ->args([
-                service('cqs.command_bus'),
+                service('cqs.message_bus.command'),
             ])
-
         ->alias(CommandBus::class, NativeCommandBus::class)
 
-        ->set('cqs.query.handler_middleware', HandlerMiddleware::class)
+        ->set('cqs.query.handle_query_middleware', HandleMessageMiddleware::class)
             ->args([
-                tagged_locator('cqs.query_handler', 'query'),
+                abstract_arg('cqs.query.handlers_locator'),
+                HandlersCountPolicy::SINGLE_HANDLER,
             ])
             ->tag('cqs.query.middleware')
 
-        ->set('cqs.query.middlewares', MiddlewareChain::class)
+        ->set('cqs.message_bus.query', NativeMessageBus::class)
             ->args([
                 tagged_iterator('cqs.query.middleware'),
-            ])
-
-        ->set('cqs.query_bus', NativeMessageBus::class)
-            ->args([
-                service('cqs.query.middlewares'),
             ])
 
         ->set(NativeQueryBus::class)
             ->args([
                 service('cqs.query_bus'),
             ])
-
         ->alias(QueryBus::class, NativeQueryBus::class)
     ;
 };

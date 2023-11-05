@@ -2,9 +2,9 @@
 
 namespace Yceruto\CqsBundle\Middleware\Doctrine;
 
-use Cqs\Messenger\Envelop;
-use Cqs\Messenger\Middleware\Middleware;
 use Doctrine\ORM\EntityManagerInterface;
+use Yceruto\Messenger\Middleware\Middleware;
+use Yceruto\Messenger\Model\Envelope;
 
 readonly class DoctrineTransactionMiddleware implements Middleware
 {
@@ -12,8 +12,8 @@ readonly class DoctrineTransactionMiddleware implements Middleware
     {
     }
 
-    public function handle(Envelop $envelop, callable $next): void
+    public function handle(Envelope $envelope, callable $next): void
     {
-        $this->em->wrapInTransaction(static fn () => $next($envelop));
+        $this->em->wrapInTransaction(static fn () => $next($envelope));
     }
 }
