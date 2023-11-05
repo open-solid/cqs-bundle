@@ -46,7 +46,7 @@ return static function (ContainerConfigurator $container) {
 
         ->set(NativeQueryBus::class)
             ->args([
-                service('cqs.query_bus'),
+                service('cqs.message_bus.query'),
             ])
         ->alias(QueryBus::class, NativeQueryBus::class)
     ;
