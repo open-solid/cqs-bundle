@@ -14,7 +14,7 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_it
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('cqs.command.handle_command_middleware', HandleMessageMiddleware::class)
+        ->set('cqs.command.handle_middleware', HandleMessageMiddleware::class)
             ->args([
                 abstract_arg('cqs.command.handlers_locator'),
                 HandlersCountPolicy::SINGLE_HANDLER,
@@ -32,7 +32,7 @@ return static function (ContainerConfigurator $container) {
             ])
         ->alias(CommandBus::class, NativeCommandBus::class)
 
-        ->set('cqs.query.handle_query_middleware', HandleMessageMiddleware::class)
+        ->set('cqs.query.handle_middleware', HandleMessageMiddleware::class)
             ->args([
                 abstract_arg('cqs.query.handlers_locator'),
                 HandlersCountPolicy::SINGLE_HANDLER,

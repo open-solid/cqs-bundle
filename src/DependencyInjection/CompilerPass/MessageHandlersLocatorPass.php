@@ -14,8 +14,8 @@ class MessageHandlersLocatorPass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container): void
     {
-        $this->processHandlers('cqs.command.handler', 'cqs.command.handle_command_middleware', $container);
-        $this->processHandlers('cqs.query.handler', 'cqs.query.handle_command_middleware', $container);
+        $this->processHandlers('cqs.command.handler', 'cqs.command.handle_middleware', $container);
+        $this->processHandlers('cqs.query.handler', 'cqs.query.handle_middleware', $container);
     }
 
     private function processHandlers(string $tagName, string $middlewareId, ContainerBuilder $container): void
@@ -23,7 +23,7 @@ class MessageHandlersLocatorPass implements CompilerPassInterface
         $refs = [];
         $handlers = $this->findAndSortTaggedServices(
             new TaggedIteratorArgument($tagName, 'message'),
-            $container
+            $container,
         );
         foreach ($handlers as $message => $reference) {
             $refs[$message][] = $reference;
