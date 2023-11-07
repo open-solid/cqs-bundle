@@ -4,6 +4,7 @@ use Cqs\Command\CommandBus;
 use Cqs\Command\NativeCommandBus;
 use Cqs\Query\NativeQueryBus;
 use Cqs\Query\QueryBus;
+use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Yceruto\Messenger\Bus\NativeMessageBus;
@@ -26,6 +27,7 @@ return static function (ContainerConfigurator $container) {
             ->tag('cqs.command.middleware')
             ->tag('cqs.query.middleware')
 
+        ->alias('logger', LoggerInterface::class)
         ->alias('logger', 'cqs.null_logger')
 
         ->set('cqs.command.handle_middleware', HandleMessageMiddleware::class)
