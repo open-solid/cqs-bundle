@@ -18,17 +18,12 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_it
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('cqs.null_logger', NullLogger::class)
-
         ->set('cqs.logger_middleware', LogMessageMiddleware::class)
             ->args([
                 service('logger'),
             ])
             ->tag('cqs.command.middleware')
             ->tag('cqs.query.middleware')
-
-        ->alias('logger', LoggerInterface::class)
-        ->alias('logger', 'cqs.null_logger')
 
         ->set('cqs.command.handle_middleware', HandleMessageMiddleware::class)
             ->args([
