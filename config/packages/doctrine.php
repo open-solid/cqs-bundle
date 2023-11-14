@@ -11,7 +11,7 @@ return static function (ContainerConfigurator $container): void {
     }
 
     $container->services()
-        ->set('cqs.command.doctrine_transaction_middleware', DoctrineTransactionMiddleware::class)
+        ->set('cqs.command.middleware.doctrine_transaction', DoctrineTransactionMiddleware::class)
             ->args([
                 service(EntityManagerInterface::class),
             ])
