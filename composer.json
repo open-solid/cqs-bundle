@@ -27,7 +27,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Yceruto\\CqsBundle\\Tests\\": "tests/"
+            "Yceruto\\Tests\\CqsBundle\\": "tests/"
         }
     },
     "minimum-stability": "dev"
