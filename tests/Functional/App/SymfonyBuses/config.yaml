@@ -1,0 +1,16 @@
+imports:
+    - '../config.yaml'
+
+cqs:
+    bus:
+        strategy: symfony
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Yceruto\Tests\CqsBundle\Functional\App\SymfonyBuses\Controller\SymfonyController: ~
+
+
+

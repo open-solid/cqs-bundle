@@ -11,14 +11,17 @@
     ],
     "require": {
         "php": ">=8.2",
-        "symfony/http-kernel": "^7.0",
-        "symfony/dependency-injection": "^7.0",
-        "yceruto/cqs": "dev-main",
-        "symfony/config": "^7.0"
+        "symfony/framework-bundle": "^7.0",
+        "symfony/yaml": "^7.0",
+        "yceruto/cqs": "dev-main"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "doctrine/orm": "^3.0",
-        "symfony/messenger": "^7.0"
+        "phpunit/phpunit": "^10.0",
+        "symfony/messenger": "^7.0",
+        "symfony/browser-kit": "^7.0",
+        "doctrine/doctrine-bundle": "2.12.x-dev"
     },
     "autoload": {
         "psr-4": {
@@ -29,6 +32,9 @@
         "psr-4": {
             "Yceruto\\Tests\\CqsBundle\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit tests"
     },
     "minimum-stability": "dev"
 }

@@ -2,10 +2,13 @@
 
 namespace Yceruto\CqsBundle;
 
+use Doctrine\ORM\EntityManagerInterface;
+use LogicException;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Yceruto\CqsBundle\Attribute\AsCommandHandler;
 use Yceruto\CqsBundle\Attribute\AsQueryHandler;
 use Yceruto\CqsBundle\Controller\CommandAction;
@@ -27,11 +30,18 @@ class CqsBundle extends AbstractBundle
         $container->addCompilerPass(new MessageHandlersLocatorPass('cqs.query.handler', 'cqs.query.middleware.handler'));
     }
 
+    public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void
+    {
+        if (interface_exists(MessageBusInterface::class)) {
+            $container->import('../config/packages/messenger.yaml');
+        }
+        if (interface_exists(EntityManagerInterface::class)) {
+            $container->import('../config/packages/messenger_doctrine.yaml');
+        }
+    }
+
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        MessageHandlerConfigurator::configure($builder, AsCommandHandler::class, 'cqs.command.handler');
-        MessageHandlerConfigurator::configure($builder, AsQueryHandler::class, 'cqs.query.handler');
-
         $builder->registerForAutoconfiguration(CommandAction::class)
             ->addTag('controller.service_arguments');
         $builder->registerForAutoconfiguration(QueryAction::class)
@@ -39,7 +49,18 @@ class CqsBundle extends AbstractBundle
         $builder->registerForAutoconfiguration(CqsAction::class)
             ->addTag('controller.service_arguments');
 
-        $container->import('../config/services.php');
+        if ($config['bus']['strategy'] === 'native') {
+            MessageHandlerConfigurator::configure($builder, AsCommandHandler::class, 'cqs.command.handler');
+            MessageHandlerConfigurator::configure($builder, AsQueryHandler::class, 'cqs.query.handler');
+
+            $container->import('../config/native.php');
+        } else {
+            if (!interface_exists(MessageBusInterface::class)) {
+                throw new LogicException('The "symfony" strategy requires symfony/messenger package.');
+            }
+
+            $container->import('../config/messenger.php');
+        }
     }
 
     public function getPath(): string

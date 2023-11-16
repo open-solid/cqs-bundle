@@ -1,0 +1,5 @@
+controllers:
+    resource:
+        path: ./Controller/
+        namespace: Yceruto\Tests\CqsBundle\Functional\App\SymfonyBuses\Controller
+    type: attribute

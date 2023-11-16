@@ -1,0 +1,10 @@
+framework:
+    messenger:
+        buses:
+            command.bus:
+                middleware:
+                    - router_context
+                    - doctrine_transaction
+        failure_transport: failed
+        transports:
+            failed: 'doctrine://default?queue_name=failed'
