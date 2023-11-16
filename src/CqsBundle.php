@@ -39,10 +39,6 @@ class CqsBundle extends AbstractBundle
         $builder->registerForAutoconfiguration(CqsAction::class)
             ->addTag('controller.service_arguments');
 
-        if ($config['middleware']['doctrine']) {
-            $container->import('../config/packages/doctrine.php');
-        }
-
         $container->import('../config/services.php');
     }
 

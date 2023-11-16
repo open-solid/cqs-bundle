@@ -4,7 +4,9 @@ use Cqs\Command\CommandBus;
 use Cqs\Command\NativeCommandBus;
 use Cqs\Query\NativeQueryBus;
 use Cqs\Query\QueryBus;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Yceruto\CqsBundle\Middleware\Doctrine\DoctrineTransactionMiddleware;
 use Yceruto\Messenger\Bus\NativeMessageBus;
 use Yceruto\Messenger\Handler\HandlersCountPolicy;
 use Yceruto\Messenger\Middleware\HandleMessageMiddleware;
@@ -14,6 +16,16 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 
 return static function (ContainerConfigurator $container) {
+    if (interface_exists(EntityManagerInterface::class)) {
+        $container->services()
+            ->set('cqs.command.middleware.doctrine_transaction', DoctrineTransactionMiddleware::class)
+            ->args([
+                service(EntityManagerInterface::class),
+            ])
+            ->tag('cqs.command.middleware')
+        ;
+    }
+
     $container->services()
         ->set('cqs.middleware.logger', LogMessageMiddleware::class)
             ->args([
