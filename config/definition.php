@@ -8,7 +8,7 @@ return static function (DefinitionConfigurator $configurator): void {
             ->arrayNode('middleware')
                 ->addDefaultsIfNotSet()
                 ->children()
-                    ->booleanNode('doctrine')
+                    ->booleanNode('doctrine_transaction')
                         ->defaultTrue()
                     ->end()
                 ->end()
