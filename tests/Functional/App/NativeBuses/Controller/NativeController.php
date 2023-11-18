@@ -2,27 +2,18 @@
 
 namespace Yceruto\Tests\CqsBundle\Functional\App\NativeBuses\Controller;
 
-use Cqs\Command\CommandBus;
 use Cqs\Command\NativeCommandBus;
 use Cqs\Query\NativeQueryBus;
-use Cqs\Query\QueryBus;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
+use Yceruto\CqsBundle\Controller\CqsAction;
 
-#[AsController]
-class NativeController
+class NativeController extends CqsAction
 {
-    public function __construct(
-        private readonly CommandBus $commandBus,
-        private readonly QueryBus $queryBus,
-    ) {
-    }
-
     #[Route('/dummy')]
     public function __invoke(): Response
     {
-        if ($this->commandBus instanceof NativeCommandBus && $this->queryBus instanceof NativeQueryBus) {
+        if ($this->commandBus() instanceof NativeCommandBus && $this->queryBus() instanceof NativeQueryBus) {
             return new Response('OK');
         }
 

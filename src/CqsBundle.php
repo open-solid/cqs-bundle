@@ -2,7 +2,6 @@
 
 namespace Yceruto\CqsBundle;
 
-use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -32,12 +31,7 @@ class CqsBundle extends AbstractBundle
 
     public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        if (interface_exists(MessageBusInterface::class)) {
-            $container->import('../config/packages/messenger.yaml');
-        }
-        if (interface_exists(EntityManagerInterface::class)) {
-            $container->import('../config/packages/messenger_doctrine.yaml');
-        }
+        $container->import('../config/packages/messenger.php');
     }
 
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
