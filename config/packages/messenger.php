@@ -20,12 +20,6 @@ return static function (ContainerBuilder $container) {
                         'router_context',
                     ],
                 ],
-                'event.bus' => [
-                    'default_middleware' => 'allow_no_handlers',
-                    'middleware' => [
-                        'router_context',
-                    ],
-                ],
                 'query.bus' => null,
             ],
             'transports' => [
