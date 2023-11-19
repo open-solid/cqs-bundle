@@ -3,6 +3,9 @@
 namespace Yceruto\CqsBundle;
 
 use LogicException;
+use Second\Shared\Domain\Bus\Command\CommandHandler;
+use Second\Shared\Domain\Bus\Event\DomainEventSubscriber;
+use Second\Shared\Domain\Bus\Query\QueryHandler;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -36,6 +39,7 @@ class CqsBundle extends AbstractBundle
 
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
+        // Allow controllers to be loaded as services
         $builder->registerForAutoconfiguration(CommandAction::class)
             ->addTag('controller.service_arguments');
         $builder->registerForAutoconfiguration(QueryAction::class)
@@ -52,6 +56,9 @@ class CqsBundle extends AbstractBundle
             if (!interface_exists(MessageBusInterface::class)) {
                 throw new LogicException('The "symfony" strategy requires symfony/messenger package.');
             }
+
+            MessageHandlerConfigurator::configure($builder, AsCommandHandler::class, 'messenger.message_handler', ['bus' => 'command.bus']);
+            MessageHandlerConfigurator::configure($builder, AsQueryHandler::class, 'messenger.message_handler', ['bus' => 'query.bus']);
 
             $container->import('../config/messenger.php');
         }
