@@ -27,11 +27,18 @@ return static function (ContainerConfigurator $container) {
     }
 
     $container->services()
-        ->set('cqs.middleware.logger', LogMessageMiddleware::class)
+        ->set('cqs.command.middleware.logger', LogMessageMiddleware::class)
             ->args([
                 service('logger'),
+                'command',
             ])
             ->tag('cqs.command.middleware')
+
+        ->set('cqs.query.middleware.logger', LogMessageMiddleware::class)
+            ->args([
+                service('logger'),
+                'query',
+            ])
             ->tag('cqs.query.middleware')
 
         ->set('cqs.command.middleware.handler', HandleMessageMiddleware::class)
