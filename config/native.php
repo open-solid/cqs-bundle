@@ -46,6 +46,7 @@ return static function (ContainerConfigurator $container) {
                 abstract_arg('cqs.command.middleware.handler.locator'),
                 HandlersCountPolicy::SINGLE_HANDLER,
                 service('logger'),
+                'Command',
             ])
             ->tag('cqs.command.middleware')
 
@@ -66,6 +67,7 @@ return static function (ContainerConfigurator $container) {
                 abstract_arg('cqs.query.middleware.handler.locator'),
                 HandlersCountPolicy::SINGLE_HANDLER,
                 service('logger'),
+                'Query',
             ])
             ->tag('cqs.query.middleware')
 
