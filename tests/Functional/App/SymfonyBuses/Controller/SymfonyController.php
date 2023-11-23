@@ -1,12 +1,12 @@
 <?php
 
-namespace Yceruto\Tests\CqsBundle\Functional\App\SymfonyBuses\Controller;
+namespace OpenSolid\Tests\CqsBundle\Functional\App\SymfonyBuses\Controller;
 
-use Cqs\Command\SymfonyCommandBus;
-use Cqs\Query\SymfonyQueryBus;
+use OpenSolid\Cqs\Command\SymfonyCommandBus;
+use OpenSolid\Cqs\Query\SymfonyQueryBus;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Yceruto\CqsBundle\Controller\CqsAction;
+use OpenSolid\CqsBundle\Controller\CqsAction;
 
 class SymfonyController extends CqsAction
 {

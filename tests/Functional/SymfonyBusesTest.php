@@ -1,6 +1,6 @@
 <?php
 
-namespace Yceruto\Tests\CqsBundle\Functional;
+namespace OpenSolid\Tests\CqsBundle\Functional;
 
 class SymfonyBusesTest extends AbstractWebTestCase
 {

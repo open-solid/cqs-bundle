@@ -1,5 +1,5 @@
 {
-    "name": "yceruto/cqs-bundle",
+    "name": "open-solid/cqs-bundle",
     "description": "Symfony integration for Command Query Separation pattern",
     "type": "library",
     "license": "MIT",
@@ -11,9 +11,9 @@
     ],
     "require": {
         "php": ">=8.2",
+        "open-solid/cqs": "dev-main",
         "symfony/framework-bundle": "^7.0",
-        "symfony/yaml": "^7.0",
-        "yceruto/cqs": "dev-main"
+        "symfony/yaml": "^7.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Yceruto\\CqsBundle\\": "src/"
+            "OpenSolid\\CqsBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Yceruto\\Tests\\CqsBundle\\": "tests/"
+            "OpenSolid\\Tests\\CqsBundle\\": "tests/"
         }
     },
     "scripts": {

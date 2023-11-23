@@ -2,7 +2,7 @@
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
-use Yceruto\CqsBundle\CqsBundle;
+use OpenSolid\CqsBundle\CqsBundle;
 
 return [
     new FrameworkBundle(),

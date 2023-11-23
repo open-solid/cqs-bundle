@@ -1,9 +1,9 @@
 <?php
 
-namespace Yceruto\CqsBundle\Controller;
+namespace OpenSolid\CqsBundle\Controller;
 
-use Cqs\Command\CommandBus;
-use Cqs\Query\QueryBus;
+use OpenSolid\Cqs\Command\CommandBus;
+use OpenSolid\Cqs\Query\QueryBus;
 use Symfony\Contracts\Service\Attribute\SubscribedService;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use Symfony\Contracts\Service\ServiceSubscriberTrait;

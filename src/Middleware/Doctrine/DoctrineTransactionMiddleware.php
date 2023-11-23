@@ -1,10 +1,10 @@
 <?php
 
-namespace Yceruto\CqsBundle\Middleware\Doctrine;
+namespace OpenSolid\CqsBundle\Middleware\Doctrine;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Yceruto\Messenger\Middleware\Middleware;
-use Yceruto\Messenger\Model\Envelope;
+use OpenSolid\Messenger\Middleware\Middleware;
+use OpenSolid\Messenger\Model\Envelope;
 
 readonly class DoctrineTransactionMiddleware implements Middleware
 {

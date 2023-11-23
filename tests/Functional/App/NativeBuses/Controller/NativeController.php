@@ -1,12 +1,12 @@
 <?php
 
-namespace Yceruto\Tests\CqsBundle\Functional\App\NativeBuses\Controller;
+namespace OpenSolid\Tests\CqsBundle\Functional\App\NativeBuses\Controller;
 
-use Cqs\Command\NativeCommandBus;
-use Cqs\Query\NativeQueryBus;
+use OpenSolid\Cqs\Command\NativeCommandBus;
+use OpenSolid\Cqs\Query\NativeQueryBus;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Yceruto\CqsBundle\Controller\CqsAction;
+use OpenSolid\CqsBundle\Controller\CqsAction;
 
 class NativeController extends CqsAction
 {

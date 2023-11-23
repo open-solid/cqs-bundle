@@ -1,7 +1,7 @@
 <?php
 
-use Cqs\Query\Query;
-use Cqs\Command\Command;
+use OpenSolid\Cqs\Query\Query;
+use OpenSolid\Cqs\Command\Command;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Messenger\MessageBusInterface;

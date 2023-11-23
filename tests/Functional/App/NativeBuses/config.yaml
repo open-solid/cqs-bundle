@@ -10,7 +10,7 @@ services:
         autowire: true
         autoconfigure: true
 
-    Yceruto\Tests\CqsBundle\Functional\App\NativeBuses\Controller\NativeController: ~
+    OpenSolid\Tests\CqsBundle\Functional\App\NativeBuses\Controller\NativeController: ~
 
 
 

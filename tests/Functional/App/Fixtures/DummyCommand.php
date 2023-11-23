@@ -1,8 +1,8 @@
 <?php
 
-namespace Yceruto\Tests\CqsBundle\Functional\App\Fixtures;
+namespace OpenSolid\Tests\CqsBundle\Functional\App\Fixtures;
 
-use Cqs\Command\Command;
+use OpenSolid\Cqs\Command\Command;
 
 class DummyCommand implements Command
 {

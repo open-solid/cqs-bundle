@@ -1,16 +1,16 @@
 <?php
 
-use Cqs\Command\CommandBus;
-use Cqs\Command\NativeCommandBus;
-use Cqs\Query\NativeQueryBus;
-use Cqs\Query\QueryBus;
+use OpenSolid\Cqs\Command\CommandBus;
+use OpenSolid\Cqs\Command\NativeCommandBus;
+use OpenSolid\Cqs\Query\NativeQueryBus;
+use OpenSolid\Cqs\Query\QueryBus;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Yceruto\CqsBundle\Middleware\Doctrine\DoctrineTransactionMiddleware;
-use Yceruto\Messenger\Bus\NativeMessageBus;
-use Yceruto\Messenger\Handler\HandlersCountPolicy;
-use Yceruto\Messenger\Middleware\HandleMessageMiddleware;
-use Yceruto\Messenger\Middleware\LogMessageMiddleware;
+use OpenSolid\CqsBundle\Middleware\Doctrine\DoctrineTransactionMiddleware;
+use OpenSolid\Messenger\Bus\NativeMessageBus;
+use OpenSolid\Messenger\Handler\HandlersCountPolicy;
+use OpenSolid\Messenger\Middleware\HandleMessageMiddleware;
+use OpenSolid\Messenger\Middleware\LogMessageMiddleware;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\abstract_arg;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;

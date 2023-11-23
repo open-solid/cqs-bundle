@@ -1,23 +1,20 @@
 <?php
 
-namespace Yceruto\CqsBundle;
+namespace OpenSolid\CqsBundle;
 
 use LogicException;
-use Second\Shared\Domain\Bus\Command\CommandHandler;
-use Second\Shared\Domain\Bus\Event\DomainEventSubscriber;
-use Second\Shared\Domain\Bus\Query\QueryHandler;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Yceruto\CqsBundle\Attribute\AsCommandHandler;
-use Yceruto\CqsBundle\Attribute\AsQueryHandler;
-use Yceruto\CqsBundle\Controller\CommandAction;
-use Yceruto\CqsBundle\Controller\CqsAction;
-use Yceruto\CqsBundle\Controller\QueryAction;
-use Yceruto\Messenger\Bridge\Symfony\DependencyInjection\CompilerPass\MessageHandlersLocatorPass;
-use Yceruto\Messenger\Bridge\Symfony\DependencyInjection\Configurator\MessageHandlerConfigurator;
+use OpenSolid\CqsBundle\Attribute\AsCommandHandler;
+use OpenSolid\CqsBundle\Attribute\AsQueryHandler;
+use OpenSolid\CqsBundle\Controller\CommandAction;
+use OpenSolid\CqsBundle\Controller\CqsAction;
+use OpenSolid\CqsBundle\Controller\QueryAction;
+use OpenSolid\Messenger\Bridge\Symfony\DependencyInjection\CompilerPass\MessageHandlersLocatorPass;
+use OpenSolid\Messenger\Bridge\Symfony\DependencyInjection\Configurator\MessageHandlerConfigurator;
 
 class CqsBundle extends AbstractBundle
 {

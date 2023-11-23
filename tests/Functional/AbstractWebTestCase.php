@@ -1,12 +1,12 @@
 <?php
 
-namespace Yceruto\Tests\CqsBundle\Functional;
+namespace OpenSolid\Tests\CqsBundle\Functional;
 
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Yceruto\Tests\CqsBundle\Functional\App\AppKernel;
+use OpenSolid\Tests\CqsBundle\Functional\App\AppKernel;
 
 class AbstractWebTestCase extends WebTestCase
 {

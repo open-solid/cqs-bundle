@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-composer require yceruto/cqs-bundle
+composer require open-solid/cqs-bundle
 ```
 
 ## License

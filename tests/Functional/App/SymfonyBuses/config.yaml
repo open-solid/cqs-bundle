@@ -10,7 +10,7 @@ services:
         autowire: true
         autoconfigure: true
 
-    Yceruto\Tests\CqsBundle\Functional\App\SymfonyBuses\Controller\SymfonyController: ~
+    OpenSolid\Tests\CqsBundle\Functional\App\SymfonyBuses\Controller\SymfonyController: ~
 
 
 

@@ -1,5 +1,5 @@
 controllers:
     resource:
         path: ./Controller/
-        namespace: Yceruto\Tests\CqsBundle\Functional\App\NativeBuses\Controller
+        namespace: OpenSolid\Tests\CqsBundle\Functional\App\NativeBuses\Controller
     type: attribute

@@ -1,6 +1,6 @@
 <?php
 
-namespace Yceruto\CqsBundle\Attribute;
+namespace OpenSolid\CqsBundle\Attribute;
 
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class AsCommandHandler

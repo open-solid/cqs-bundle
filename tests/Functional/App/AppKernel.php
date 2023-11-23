@@ -1,6 +1,6 @@
 <?php
 
-namespace Yceruto\Tests\CqsBundle\Functional\App;
+namespace OpenSolid\Tests\CqsBundle\Functional\App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
