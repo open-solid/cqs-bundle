@@ -1,9 +1,9 @@
 <?php
 
+use OpenSolid\Cqs\Command\Bridge\SymfonyCommandBus;
 use OpenSolid\Cqs\Command\CommandBus;
-use OpenSolid\Cqs\Command\SymfonyCommandBus;
+use OpenSolid\Cqs\Query\Bridge\SymfonyQueryBus;
 use OpenSolid\Cqs\Query\QueryBus;
-use OpenSolid\Cqs\Query\SymfonyQueryBus;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
