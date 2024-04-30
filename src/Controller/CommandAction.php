@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OpenSolid\CqsBundle\Controller;
 
 use OpenSolid\Cqs\Command\CommandBus;

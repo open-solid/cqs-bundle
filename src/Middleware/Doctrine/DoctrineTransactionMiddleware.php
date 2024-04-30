@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OpenSolid\CqsBundle\Middleware\Doctrine;
 
 use Doctrine\ORM\EntityManagerInterface;

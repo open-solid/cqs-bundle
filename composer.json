@@ -6,12 +6,12 @@
     "authors": [
         {
             "name": "Yonel Ceruto",
-            "email": "yonelceruto@gmail.com"
+            "email": "patch@yceruto.dev"
         }
     ],
     "require": {
         "php": ">=8.2",
-        "open-solid/cqs": "dev-main",
+        "open-solid/cqs": "^1.0",
         "symfony/framework-bundle": "^7.0",
         "symfony/yaml": "^7.0"
     },
@@ -21,7 +21,7 @@
         "phpunit/phpunit": "^10.0",
         "symfony/messenger": "^7.0",
         "symfony/browser-kit": "^7.0",
-        "doctrine/doctrine-bundle": "2.12.x-dev"
+        "doctrine/doctrine-bundle": "^2.12"
     },
     "autoload": {
         "psr-4": {
@@ -35,6 +35,5 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit tests"
-    },
-    "minimum-stability": "dev"
+    }
 }

@@ -4,13 +4,8 @@ use OpenSolid\Cqs\Query\Query;
 use OpenSolid\Cqs\Command\Command;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\Messenger\MessageBusInterface;
 
 return static function (ContainerBuilder $container) {
-    if (!interface_exists(MessageBusInterface::class)) {
-        return;
-    }
-
     $config = [
         'messenger' => [
             'default_bus' => 'command.bus',
