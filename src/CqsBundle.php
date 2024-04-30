@@ -33,7 +33,9 @@ class CqsBundle extends AbstractBundle
 
     public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        $container->import('../config/packages/messenger.php');
+        if (interface_exists(MessageBusInterface::class)) {
+            $container->import('../config/packages/messenger.php');
+        }
     }
 
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
