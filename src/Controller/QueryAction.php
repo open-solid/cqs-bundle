@@ -6,12 +6,12 @@ namespace OpenSolid\CqsBundle\Controller;
 
 use OpenSolid\Cqs\Query\QueryBus;
 use Symfony\Contracts\Service\Attribute\SubscribedService;
+use Symfony\Contracts\Service\ServiceMethodsSubscriberTrait;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
-use Symfony\Contracts\Service\ServiceSubscriberTrait;
 
 class QueryAction implements ServiceSubscriberInterface
 {
-    use ServiceSubscriberTrait;
+    use ServiceMethodsSubscriberTrait;
 
     #[SubscribedService]
     protected function queryBus(): QueryBus
