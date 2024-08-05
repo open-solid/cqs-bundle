@@ -12,16 +12,17 @@
     "require": {
         "php": ">=8.2",
         "open-solid/cqs": "^1.0",
-        "symfony/framework-bundle": "^7.0",
-        "symfony/yaml": "^7.0"
+        "symfony/framework-bundle": "^7.1",
+        "symfony/yaml": "^7.1"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
         "doctrine/orm": "^3.0",
         "phpunit/phpunit": "^10.0",
-        "symfony/messenger": "^7.0",
-        "symfony/browser-kit": "^7.0",
-        "doctrine/doctrine-bundle": "^2.12"
+        "symfony/messenger": "^7.1",
+        "symfony/browser-kit": "^7.1",
+        "doctrine/doctrine-bundle": "^2.12",
+        "friendsofphp/php-cs-fixer": "^3.54"
     },
     "autoload": {
         "psr-4": {
@@ -34,6 +35,7 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit tests"
+        "test": "vendor/bin/phpunit tests",
+        "cs": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     }
 }

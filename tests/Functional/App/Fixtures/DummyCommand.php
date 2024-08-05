@@ -1,9 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of OpenSolid package.
+ *
+ * (c) Yonel Ceruto <open@yceruto.dev>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace OpenSolid\Tests\CqsBundle\Functional\App\Fixtures;
 
 use OpenSolid\Cqs\Command\Command;
 
-class DummyCommand implements Command
+/**
+ * @extends DummyCommand<void>
+ */
+final readonly class DummyCommand extends Command
 {
 }

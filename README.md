@@ -1,4 +1,6 @@
-# Command Query Separation pattern integration for Symfony framework
+# Command-Query Separation integration for Symfony framework
+
+See https://github.com/open-solid/cqs for more information.
 
 ## Installation
 

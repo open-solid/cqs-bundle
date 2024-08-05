@@ -2,21 +2,29 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of OpenSolid package.
+ *
+ * (c) Yonel Ceruto <open@yceruto.dev>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace OpenSolid\CqsBundle;
 
-use LogicException;
-use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-use Symfony\Component\Messenger\MessageBusInterface;
+use OpenSolid\Bus\Bridge\Symfony\DependencyInjection\CompilerPass\MessageHandlersLocatorPass;
+use OpenSolid\Bus\Bridge\Symfony\DependencyInjection\Configurator\MessageHandlerConfigurator;
 use OpenSolid\CqsBundle\Attribute\AsCommandHandler;
 use OpenSolid\CqsBundle\Attribute\AsQueryHandler;
 use OpenSolid\CqsBundle\Controller\CommandAction;
 use OpenSolid\CqsBundle\Controller\CqsAction;
 use OpenSolid\CqsBundle\Controller\QueryAction;
-use OpenSolid\Messenger\Bridge\Symfony\DependencyInjection\CompilerPass\MessageHandlersLocatorPass;
-use OpenSolid\Messenger\Bridge\Symfony\DependencyInjection\Configurator\MessageHandlerConfigurator;
+use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 class CqsBundle extends AbstractBundle
 {
@@ -48,14 +56,14 @@ class CqsBundle extends AbstractBundle
         $builder->registerForAutoconfiguration(CqsAction::class)
             ->addTag('controller.service_arguments');
 
-        if ($config['bus']['strategy'] === 'native') {
+        if ('native' === $config['bus']['strategy']) {
             MessageHandlerConfigurator::configure($builder, AsCommandHandler::class, 'cqs.command.handler');
             MessageHandlerConfigurator::configure($builder, AsQueryHandler::class, 'cqs.query.handler');
 
             $container->import('../config/native.php');
         } else {
             if (!interface_exists(MessageBusInterface::class)) {
-                throw new LogicException('The "symfony" strategy requires symfony/messenger package.');
+                throw new \LogicException('The "symfony" strategy requires symfony/messenger package.');
             }
 
             MessageHandlerConfigurator::configure($builder, AsCommandHandler::class, 'messenger.message_handler', ['bus' => 'command.bus']);
