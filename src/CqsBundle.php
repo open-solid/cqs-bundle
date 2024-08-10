@@ -17,9 +17,9 @@ use OpenSolid\Bus\Bridge\Symfony\DependencyInjection\CompilerPass\MessageHandler
 use OpenSolid\Bus\Bridge\Symfony\DependencyInjection\Configurator\MessageHandlerConfigurator;
 use OpenSolid\CqsBundle\Attribute\AsCommandHandler;
 use OpenSolid\CqsBundle\Attribute\AsQueryHandler;
-use OpenSolid\CqsBundle\Controller\CommandAction;
-use OpenSolid\CqsBundle\Controller\CqsAction;
-use OpenSolid\CqsBundle\Controller\QueryAction;
+use OpenSolid\CqsBundle\Action\CommandAction;
+use OpenSolid\CqsBundle\Action\CqsAction;
+use OpenSolid\CqsBundle\Action\QueryAction;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;

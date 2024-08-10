@@ -15,7 +15,7 @@ namespace OpenSolid\Tests\CqsBundle\Functional\App\NativeBuses\Controller;
 
 use OpenSolid\Cqs\Command\NativeCommandBus;
 use OpenSolid\Cqs\Query\NativeQueryBus;
-use OpenSolid\CqsBundle\Controller\CqsAction;
+use OpenSolid\CqsBundle\Action\CqsAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
