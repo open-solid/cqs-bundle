@@ -35,8 +35,8 @@ class CqsBundle extends AbstractBundle
 
     public function build(ContainerBuilder $container): void
     {
-        $container->addCompilerPass(new MessageHandlersLocatorPass('cqs.command.handler', 'cqs.command.middleware.handler'));
-        $container->addCompilerPass(new MessageHandlersLocatorPass('cqs.query.handler', 'cqs.query.middleware.handler'));
+        $container->addCompilerPass(new MessageHandlersLocatorPass('cqs.command.handler', 'cqs.command.middleware.handler', topic: 'command'));
+        $container->addCompilerPass(new MessageHandlersLocatorPass('cqs.query.handler', 'cqs.query.middleware.handler', topic: 'query'));
     }
 
     public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void
