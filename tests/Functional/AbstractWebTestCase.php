@@ -70,7 +70,7 @@ class AbstractWebTestCase extends WebTestCase
             $options['test_case'],
             $options['root_config'] ?? 'config.yaml',
             $options['environment'] ?? 'test',
-            $options['debug'] ?? false,
+            $options['debug'] ?? true,
         );
     }
 

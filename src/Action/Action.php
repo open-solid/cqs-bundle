@@ -15,11 +15,11 @@ namespace OpenSolid\CqsBundle\Action;
 
 use OpenSolid\Cqs\Command\CommandBus;
 use OpenSolid\Cqs\Query\QueryBus;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Contracts\Service\Attribute\SubscribedService;
 use Symfony\Contracts\Service\ServiceMethodsSubscriberTrait;
-use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
-abstract class CqsAction implements ServiceSubscriberInterface
+abstract class Action extends AbstractController
 {
     use ServiceMethodsSubscriberTrait;
 
