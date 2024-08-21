@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace OpenSolid\CqsBundle;
 
-use OpenSolid\Bus\Bridge\Symfony\DependencyInjection\CompilerPass\MessageHandlersLocatorPass;
+use OpenSolid\Bus\Bridge\Symfony\DependencyInjection\CompilerPass\HandlingMiddlewarePass;
 use OpenSolid\Bus\Bridge\Symfony\DependencyInjection\Configurator\MessageHandlerConfigurator;
-use OpenSolid\CqsBundle\Attribute\AsCommandHandler;
-use OpenSolid\CqsBundle\Attribute\AsQueryHandler;
 use OpenSolid\CqsBundle\Action\CommandAction;
 use OpenSolid\CqsBundle\Action\CqsAction;
 use OpenSolid\CqsBundle\Action\QueryAction;
+use OpenSolid\CqsBundle\Attribute\AsCommandHandler;
+use OpenSolid\CqsBundle\Attribute\AsQueryHandler;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -35,8 +35,8 @@ class CqsBundle extends AbstractBundle
 
     public function build(ContainerBuilder $container): void
     {
-        $container->addCompilerPass(new MessageHandlersLocatorPass('cqs.command.handler', 'cqs.command.middleware.handler', topic: 'command'));
-        $container->addCompilerPass(new MessageHandlersLocatorPass('cqs.query.handler', 'cqs.query.middleware.handler', topic: 'query'));
+        $container->addCompilerPass(new HandlingMiddlewarePass('cqs.command.handler', 'cqs.command.middleware.handler', topic: 'command'));
+        $container->addCompilerPass(new HandlingMiddlewarePass('cqs.query.handler', 'cqs.query.middleware.handler', topic: 'query'));
     }
 
     public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void

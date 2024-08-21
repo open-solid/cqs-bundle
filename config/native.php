@@ -1,7 +1,7 @@
 <?php
 
 use OpenSolid\Bus\Bridge\Doctrine\Middleware\DoctrineTransactionMiddleware;
-use OpenSolid\Bus\Handler\MessageHandlersCountPolicy;
+use OpenSolid\Bus\Handler\HandlersCountPolicy;
 use OpenSolid\Bus\Middleware\HandlingMiddleware;
 use OpenSolid\Bus\Middleware\LoggingMiddleware;
 use OpenSolid\Bus\NativeMessageBus;
@@ -44,7 +44,8 @@ return static function (ContainerConfigurator $container) {
         ->set('cqs.command.middleware.handler', HandlingMiddleware::class)
             ->args([
                 abstract_arg('cqs.command.middleware.handler.locator'),
-                MessageHandlersCountPolicy::SINGLE_HANDLER,
+                abstract_arg('cqs.command.middleware.decorator.locator'),
+                HandlersCountPolicy::SINGLE_HANDLER,
                 service('logger'),
                 'Command',
             ])
@@ -65,7 +66,8 @@ return static function (ContainerConfigurator $container) {
         ->set('cqs.query.middleware.handler', HandlingMiddleware::class)
             ->args([
                 abstract_arg('cqs.query.middleware.handler.locator'),
-                MessageHandlersCountPolicy::SINGLE_HANDLER,
+                abstract_arg('cqs.query.middleware.decorator.locator'),
+                HandlersCountPolicy::SINGLE_HANDLER,
                 service('logger'),
                 'Query',
             ])
