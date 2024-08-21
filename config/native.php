@@ -1,5 +1,6 @@
 <?php
 
+use OpenSolid\Bus\Bridge\Doctrine\Decorator\DoctrineTransactionDecorator;
 use OpenSolid\Bus\Bridge\Doctrine\Middleware\DoctrineTransactionMiddleware;
 use OpenSolid\Bus\Handler\HandlersCountPolicy;
 use OpenSolid\Bus\Middleware\HandlingMiddleware;
@@ -23,6 +24,12 @@ return static function (ContainerConfigurator $container) {
                 service('doctrine'),
             ])
             ->tag('cqs.command.middleware')
+
+            ->set('cqs.command.decorator.doctrine_transaction', DoctrineTransactionDecorator::class)
+                ->args([
+                    service('doctrine'),
+                ])
+            ->alias(DoctrineTransactionDecorator::class, 'cqs.command.decorator.doctrine_transaction')
         ;
     }
 
