@@ -1,6 +1,5 @@
 <?php
 
-use OpenSolid\Bus\Bridge\Doctrine\Decorator\DoctrineTransactionDecorator;
 use OpenSolid\Bus\Bridge\Doctrine\Middleware\DoctrineTransactionMiddleware;
 use OpenSolid\Bus\Handler\HandlersCountPolicy;
 use OpenSolid\Bus\Middleware\HandlingMiddleware;
@@ -12,6 +11,8 @@ use OpenSolid\Cqs\Query\NativeQueryBus;
 use OpenSolid\Cqs\Query\QueryBus;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Yceruto\Decorator\DecoratorInterface;
+
 use function Symfony\Component\DependencyInjection\Loader\Configurator\abstract_arg;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
@@ -24,12 +25,6 @@ return static function (ContainerConfigurator $container) {
                 service('doctrine'),
             ])
             ->tag('cqs.command.middleware')
-
-            ->set('cqs.command.decorator.doctrine_transaction', DoctrineTransactionDecorator::class)
-                ->args([
-                    service('doctrine'),
-                ])
-            ->alias(DoctrineTransactionDecorator::class, 'cqs.command.decorator.doctrine_transaction')
         ;
     }
 
@@ -51,8 +46,8 @@ return static function (ContainerConfigurator $container) {
         ->set('cqs.command.middleware.handler', HandlingMiddleware::class)
             ->args([
                 abstract_arg('cqs.command.middleware.handler.locator'),
-                abstract_arg('cqs.command.middleware.decorator.locator'),
                 HandlersCountPolicy::SINGLE_HANDLER,
+                service(DecoratorInterface::class)->ignoreOnInvalid(),
                 service('logger'),
                 'Command',
             ])
@@ -73,8 +68,8 @@ return static function (ContainerConfigurator $container) {
         ->set('cqs.query.middleware.handler', HandlingMiddleware::class)
             ->args([
                 abstract_arg('cqs.query.middleware.handler.locator'),
-                abstract_arg('cqs.query.middleware.decorator.locator'),
                 HandlersCountPolicy::SINGLE_HANDLER,
+                service(DecoratorInterface::class)->ignoreOnInvalid(),
                 service('logger'),
                 'Query',
             ])
