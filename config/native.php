@@ -69,7 +69,7 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 abstract_arg('cqs.query.middleware.handler.locator'),
                 HandlersCountPolicy::SINGLE_HANDLER,
-                service(DecoratorInterface::class)->ignoreOnInvalid(),
+                service(DecoratorInterface::class)->nullOnInvalid(),
                 service('logger'),
                 'Query',
             ])
