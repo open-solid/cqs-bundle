@@ -5,6 +5,10 @@ cqs:
     bus:
         strategy: symfony
 
+domain_event:
+    bus:
+        strategy: symfony
+
 services:
     _defaults:
         autowire: true

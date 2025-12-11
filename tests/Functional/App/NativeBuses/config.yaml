@@ -5,6 +5,10 @@ cqs:
     bus:
         strategy: native
 
+domain_event:
+    bus:
+        strategy: native
+
 services:
     _defaults:
         autowire: true

@@ -19,6 +19,6 @@ use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 return [
     new FrameworkBundle(),
     new DoctrineBundle(),
-    new CqsBundle(),
     new DomainEventBundle(),
+    new CqsBundle(),
 ];
