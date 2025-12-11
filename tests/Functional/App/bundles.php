@@ -13,10 +13,12 @@ declare(strict_types=1);
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use OpenSolid\CqsBundle\CqsBundle;
+use OpenSolid\DomainEvent\DomainEventBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 
 return [
     new FrameworkBundle(),
     new DoctrineBundle(),
     new CqsBundle(),
+    new DomainEventBundle(),
 ];
