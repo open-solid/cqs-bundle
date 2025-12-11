@@ -50,7 +50,7 @@ class CqsBundle extends AbstractBundle
             MessageHandlerConfigurator::configure($builder, AsQueryHandler::class, 'cqs.query.handler');
 
             $container->import('../config/native.php');
-        } else {
+        } elseif ('symfony' === $config['bus']['strategy']) {
             if (!interface_exists(MessageBusInterface::class)) {
                 throw new \LogicException('The "symfony" strategy requires symfony/messenger package.');
             }

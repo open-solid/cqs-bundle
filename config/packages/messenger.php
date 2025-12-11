@@ -2,6 +2,7 @@
 
 use OpenSolid\Cqs\Query\Query;
 use OpenSolid\Cqs\Command\Command;
+use OpenSolid\DomainEvent\Infrastructure\Event\Bus\Middleware\SymfonyEventPublisherMiddleware;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -34,6 +35,10 @@ return static function (ContainerBuilder $container) {
         $config['messenger']['buses']['command.bus']['middleware'][] = 'doctrine_transaction';
         $config['messenger']['failure_transport'] = 'failed';
         $config['messenger']['transports']['failed'] = 'doctrine://default?queue_name=failed';
+
+        if (class_exists(SymfonyEventPublisherMiddleware::class)) {
+            $config['messenger']['buses']['command.bus']['middleware'][] = 'publish_domain_events';
+        }
     }
 
     $container->prependExtensionConfig('framework', $config);

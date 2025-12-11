@@ -15,15 +15,17 @@
         "symfony/framework-bundle": "^7.1"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
         "doctrine/orm": "^3.0",
+        "doctrine/doctrine-bundle": "^2.12",
+        "friendsofphp/php-cs-fixer": "^3.54",
         "phpunit/phpunit": "^10.0",
+        "roave/security-advisories": "dev-latest",
         "symfony/messenger": "^7.1",
         "symfony/browser-kit": "^7.1",
         "symfony/yaml": "^7.1",
-        "doctrine/doctrine-bundle": "^2.12",
-        "friendsofphp/php-cs-fixer": "^3.54",
-        "yceruto/decorator": "^1.2"
+        "symfony/var-exporter": "^7.4",
+        "yceruto/decorator": "^1.2",
+        "open-solid/domain-event": "dev-main"
     },
     "autoload": {
         "psr-4": {

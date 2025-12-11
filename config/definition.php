@@ -11,7 +11,7 @@ return static function (DefinitionConfigurator $configurator): void {
                 ->children()
                     ->enumNode('strategy')
                         ->defaultValue(interface_exists(MessageBusInterface::class) ? 'symfony' : 'native')
-                        ->values(['symfony', 'native'])
+                        ->values(['symfony', 'native', 'custom'])
                     ->end()
                 ->end()
             ->end()
